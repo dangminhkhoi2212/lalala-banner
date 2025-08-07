@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../global.css">
+    <style>
+        body {
+
+            background-image: url('../public/banner2/Bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body class="h-dvh">
+    <main class=" flex flex-col items-center  h-full relative">
+        <div class="w-full h-auto">
+            <img src="../public/banner2/Logo.png" class="h-full w-full">
+        </div>
+        <div class=" text-[#fd7458]  md:text-2xl flex justify-center items-center gap-[5px] font-[500] mt-5"
+            style='letter-spacing: 1px;'>
+            <p>Tặng bạn Coupon</p> <span class="text-2xl md:text-[4rem] mb-2">10%</span>
+            <p>Khi tải ứng dụng</p>
+            <!-- <img src="../public/banner2/coupon.png" alt=""> -->
+        </div>
+        <div
+            class="relative flex items-center justify-center w-[60%] h-[40%] bg-[url('../public/banner2/QR.png')] bg-cover bg-center bg-no-repeat  mt-24 md:mt-40">
+            <!-- <img src="../public/banner2/QR.png" class="w-full h-full z-10 relative"> -->
+
+
+            <div class="absolute left-[-30%] md:left-[-20%] size-24 md:size-40 z-[-1]">
+                <img src="../public/banner2/Icon1.png" class="w-full h-full">
+            </div>
+
+            <div class="absolute top-0  translate-y-[-70%] left-[20%] size-24 md:size-40 z-[-1]">
+                <img src="../public/banner2/Icon2.png" class="w-full h-full">
+            </div>
+
+            <div class="absolute right-[-30%] md:right-[-20%]  bottom-[0%] w-20 md:w-40 z-40">
+                <img src="../public/banner2/Icon3.png" class="w-full h-full">
+            </div>
+
+            <div
+                class="absolute bottom-0 translate-y-[50%] w-[60%] z-20  h-[40%] bg-[url('../public/banner2/Access.png')] bg-contain bg-center bg-no-repeat flex flex-col items-center justify-center text-sm md:text-2xl text-[#121212] ">
+                <p class="">Kết nối đến Wifi</p>
+                <p>(Internet Access)</p>
+                <img src="../public/banner2/Arrow.png" class="w-8 md:w-16 mt-2 md:mt-4">
+            </div>
+        </div>
+
+
+
+
+    </main>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const clientMac = params.get('mac');
+        const clientIP = params.get('ip');
+        const arubaHost = params.get('switchip');
+
+        function connect() {
+            // Optional: Log to your API
+            /*
+            fetch("https://api.yourcompany.com/log", {
+              method: "POST",
+              headers: {"Content-Type": "application/json"},
+              body: JSON.stringify({
+                mac: clientMac,
+                ip: clientIP,
+                time: new Date().toISOString()
+              })
+            }).catch(err => console.log("API log error", err));
+              */
+            // Redirect to Aruba authentication URL
+            const user = "guest";
+            const pass = "guest";
+            const redirectUrl = `http://${arubaHost}/auth/index.html?cmd=authenticate&mac=${clientMac}&ip=${clientIP}&user=${user}&password=${pass}`;
+            window.location.href = redirectUrl;
+        }
+    </script>
+</body>
+
+
+</html>
