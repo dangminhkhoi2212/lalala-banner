@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @font-face {
     font-family: 'DVN';
     src: url('/public/font/DVN_GUSTAVO_Medium.ttf') format('truetype');
