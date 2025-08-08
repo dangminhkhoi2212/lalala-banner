@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./global.css">
+    <link href="../output.css" rel="stylesheet">
+    <style>
+        body {
+
+            background-image: url('../public/banner1/Bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body class="h-dvh font-dvn ">
+    <main class=" flex flex-col items-center  h-full  relative">
+        <div class="w-full h-auto">
+            <img src="../public/banner1/Logo.png" class="h-full w-full">
+        </div>
+        <div class="flex items-center justify-center relative w-[80%] mt-20 sm:mt-24 md:mt-12">
+            <div class="flex items-center justify-center absolute top-[-5%] right-[-5%] size-1/4">
+                <img src="../public/banner1/Badges.png">
+            </div>
+            <img src="../public/banner3/Voucher.png" class="h-full w-full">
+        </div>
+
+        <div class="h-10 md:h-12 w-12 md:w-24 overflow-hidden">
+        </div>
+
+        <div class=" w-[80%] " onclick="connect()">
+            <img src="../public/banner3/Scan.png" class="h-full w-full">
+        </div>
+
+
+        <div class=" absolute bottom-10 left-3 md:left-8 size-16 sm:size-20 md:size-28">
+            <img src="../public/banner1/GroupIcon1.png" class="h-full w-full">
+        </div>
+        <div class=" absolute bottom-10 md:bottom-12 size-24 sm:size-28 md:size-40 ">
+            <img src="../public/banner1/GroupIcon2.png" class="h-full w-full">
+        </div>
+        <div class=" absolute bottom-[16%] right-3 w-16 sm:w-20  md:w-28 ">
+            <img src="../public/banner1/GroupIcon3.png" class="h-full w-full">
+        </div>
+    </main>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const clientMac = params.get('mac');
+        const clientIP = params.get('ip');
+        const arubaHost = params.get('switchip');
+
+        function connect() {
+            // Optional: Log to your API
+            /*
+            fetch("https://api.yourcompany.com/log", {
+              method: "POST",
+              headers: {"Content-Type": "application/json"},
+              body: JSON.stringify({
+                mac: clientMac,
+                ip: clientIP,
+                time: new Date().toISOString()
+              })
+            }).catch(err => console.log("API log error", err));
+              */
+            // Redirect to Aruba authentication URL
+            const user = "guest";
+            const pass = "guest";
+            const redirectUrl = `http://${arubaHost}/auth/index.html?cmd=authenticate&mac=${clientMac}&ip=${clientIP}&user=${user}&password=${pass}`;
+            window.location.href = redirectUrl;
+        }
+    </script>
+</body>
+
+
+</html>
