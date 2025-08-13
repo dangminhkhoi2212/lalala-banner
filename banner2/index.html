@@ -35,7 +35,7 @@
             <!-- <img src="../public/banner2/QR.png" class="w-full h-full z-10 relative"> -->
 
 
-            <div class="absolute left-[-30%] md:left-[-20%] size-24 md:size-40 lg:size-30 z-[-1]">
+            <div class="absolute left-[-30%] md:left-[-20%] size-24 md:size-40 lg:size-[7.5rem] z-[-1]">
                 <img src="../public/banner2/Icon1.png" class="w-full h-full">
             </div>
 
@@ -43,7 +43,7 @@
                 <img src="../public/banner2/Icon2.png" class="w-full h-full">
             </div>
 
-            <div class="absolute right-[-30%] md:right-[-20%]  bottom-[0%] w-20 md:w-40 lg:w-30 z-40">
+            <div class="absolute right-[-30%] md:right-[-20%]  bottom-[0%] w-20 md:w-40 lg:w-[7.5rem] z-40">
                 <img src="../public/banner2/Icon3.png" class="w-full h-full">
             </div>
 
@@ -62,9 +62,13 @@
     </main>
     <script>
         const params = new URLSearchParams(window.location.search);
-        const clientMac = params.get('mac');
-        const clientIP = params.get('ip');
-        const arubaHost = params.get('switchip');
+        const clientMac = params.get('mac') || '';
+        const clientIP = params.get('ip') || '';
+        const arubaHost = params.get('switchip') || '';
+
+        function isValidHost(host) {
+            return /^[a-zA-Z0-9.-]+$/.test(host);
+        }
 
         function connect() {
             // Optional: Log to your API
@@ -80,10 +84,14 @@
             }).catch(err => console.log("API log error", err));
               */
             // Redirect to Aruba authentication URL
+            if (!isValidHost(arubaHost)) {
+                console.error('Invalid host');
+                return;
+            }
             const user = "guest";
             const pass = "guest";
-            const redirectUrl = `http://${arubaHost}/auth/index.html?cmd=authenticate&mac=${clientMac}&ip=${clientIP}&user=${user}&password=${pass}`;
-            window.location.href = redirectUrl;
+            const redirectUrl = `http://${arubaHost}/auth/index.html?cmd=authenticate&mac=${encodeURIComponent(clientMac)}&ip=${encodeURIComponent(clientIP)}&user=${encodeURIComponent(user)}&password=${encodeURIComponent(pass)}`;
+            window.location.assign(redirectUrl);
         }
     </script>
 </body>
