@@ -32,6 +32,7 @@ body {
 
 @theme {
     --animate-button: button 6.5s ease-in-out forwards infinite;
+    --font-dvn: "DVN", sans-serif;
 
     @keyframes button {
         0% {
