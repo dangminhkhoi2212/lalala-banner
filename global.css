@@ -2,21 +2,21 @@
 
 @font-face {
     font-family: 'DVN';
-    src: url('./font/DVN_GUSTAVO_Medium.ttf') format('truetype');
+    src: url('./public/font/DVN_GUSTAVO_Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'DVN';
-    src: url('./font/DVN_Gustavo_Bold.ttf') format('truetype');
+    src: url('./public/font/DVN_Gustavo_Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'DVN';
-    src: url('./font/DVN_Gustavo_Regular.ttf') format('truetype');
+    src: url('./public/font/DVN_Gustavo_Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
