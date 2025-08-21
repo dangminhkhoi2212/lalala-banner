@@ -29,3 +29,23 @@ body {
     overflow: hidden;
     font-family: 'DVN', sans-serif;
 }
+
+@theme {
+    --animate-button: button 6.5s ease-in-out forwards infinite;
+
+    @keyframes button {
+        0% {
+            transform: translateY(-600%);
+        }
+
+        27.27% {
+            /* ~1.5s / 5.5s = 27.27% */
+            transform: translateY(600%);
+        }
+
+        100% {
+            transform: translateY(600%);
+            /* giữ nguyên trong 4s */
+        }
+    }
+}
